@@ -2,10 +2,12 @@ library timeline_node;
 
 import 'package:flutter/material.dart';
 
+enum TimelineNodeType { Left, Right }
 enum TimelineNodePointType { None, Circle }
 enum TimelineNodeLineType { None, Full, TopHalf, BottomHalf }
 
 class TimelineNodeStyle {
+  TimelineNodeType type;
   TimelineNodePointType pointType;
   Color pointColor;
   double pointRadius;
@@ -15,7 +17,8 @@ class TimelineNodeStyle {
   double preferredWidth;
 
   TimelineNodeStyle(
-      {this.pointType = TimelineNodePointType.None,
+      {this.type = TimelineNodeType.Left,
+      this.pointType = TimelineNodePointType.None,
       this.pointColor = Colors.blue,
       this.pointRadius = 6,
       this.lineType = TimelineNodeLineType.None,
@@ -34,6 +37,43 @@ class TimelineNode extends StatefulWidget {
 }
 
 class _TimelineNodeState extends State<TimelineNode> {
+  Widget layout() {
+    switch (this.widget.style.type) {
+      case TimelineNodeType.Left:
+        IntrinsicHeight(
+          child: Row(
+            children: <Widget>[
+              Container(
+                width: this.widget.style.preferredWidth,
+                height: double.infinity,
+                child: CustomPaint(
+                  painter: TimelineNodeLinePainter(style: this.widget.style),
+                ),
+              ),
+              Expanded(child: this.widget.child),
+            ],
+          ),
+        );
+        break;
+      case TimelineNodeType.Right:
+        IntrinsicHeight(
+          child: Row(
+            children: <Widget>[
+              Expanded(child: this.widget.child),
+              Container(
+                width: this.widget.style.preferredWidth,
+                height: double.infinity,
+                child: CustomPaint(
+                  painter: TimelineNodeLinePainter(style: this.widget.style),
+                ),
+              ),
+            ],
+          ),
+        );
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return IntrinsicHeight(
@@ -46,7 +86,7 @@ class _TimelineNodeState extends State<TimelineNode> {
               painter: TimelineNodeLinePainter(style: this.widget.style),
             ),
           ),
-          Expanded(child: this.widget.child)
+          Expanded(child: this.widget.child),
         ],
       ),
     );
