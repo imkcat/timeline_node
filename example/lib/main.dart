@@ -60,6 +60,7 @@ class HomePage extends StatefulWidget {
         message:
             'Ut fringilla dui posuere, lobortis mauris vitae, pretium ipsum.',
         style: TimelineNodeStyle(
+            type: TimelineNodeType.Right,
             pointType: TimelineNodePointType.Circle,
             pointRadius: 10,
             lineType: TimelineNodeLineType.BottomHalf,
@@ -68,11 +69,14 @@ class HomePage extends StatefulWidget {
         message:
             'Ut fringilla dui posuere, lobortis mauris vitae, pretium ipsum.',
         style: TimelineNodeStyle(
-            lineType: TimelineNodeLineType.Full, lineWidth: 5)),
+            type: TimelineNodeType.Right,
+            lineType: TimelineNodeLineType.Full,
+            lineWidth: 5)),
     HomePageTimelineObject(
         message:
             'Praesent nulla sapien, vestibulum eget tincidunt ac, suscipit eget libero. Aliquam finibus sed nisi sed ornare.',
         style: TimelineNodeStyle(
+            type: TimelineNodeType.Right,
             pointType: TimelineNodePointType.Circle,
             pointRadius: 10,
             lineType: TimelineNodeLineType.TopHalf,

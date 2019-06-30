@@ -40,7 +40,7 @@ class _TimelineNodeState extends State<TimelineNode> {
   Widget layout() {
     switch (this.widget.style.type) {
       case TimelineNodeType.Left:
-        IntrinsicHeight(
+        return IntrinsicHeight(
           child: Row(
             children: <Widget>[
               Container(
@@ -56,7 +56,7 @@ class _TimelineNodeState extends State<TimelineNode> {
         );
         break;
       case TimelineNodeType.Right:
-        IntrinsicHeight(
+        return IntrinsicHeight(
           child: Row(
             children: <Widget>[
               Expanded(child: this.widget.child),
@@ -76,20 +76,7 @@ class _TimelineNodeState extends State<TimelineNode> {
 
   @override
   Widget build(BuildContext context) {
-    return IntrinsicHeight(
-      child: Row(
-        children: <Widget>[
-          Container(
-            width: this.widget.style.preferredWidth,
-            height: double.infinity,
-            child: CustomPaint(
-              painter: TimelineNodeLinePainter(style: this.widget.style),
-            ),
-          ),
-          Expanded(child: this.widget.child),
-        ],
-      ),
-    );
+    return layout();
   }
 }
 
