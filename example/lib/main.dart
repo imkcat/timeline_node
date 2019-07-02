@@ -34,7 +34,7 @@ class HomePageTimelineObject {
 }
 
 class HomePage extends StatefulWidget {
-  List<HomePageTimelineObject> timelineObject = [
+  final List<HomePageTimelineObject> timelineObject = [
     HomePageTimelineObject(
         message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         style: TimelineNodeStyle(
