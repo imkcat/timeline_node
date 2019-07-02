@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage> {
           return TimelineNode(
             style: this.widget.timelineObject[index].style,
             child: Padding(
-              padding: EdgeInsets.only(right: 8, top: 4, bottom: 4),
+              padding: EdgeInsets.all(4),
               child: Card(
                 child: Padding(
                   padding: EdgeInsets.all(16),
