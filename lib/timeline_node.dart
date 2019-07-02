@@ -38,40 +38,30 @@ class TimelineNode extends StatefulWidget {
 
 class _TimelineNodeState extends State<TimelineNode> {
   Widget layout() {
+    Widget nodeLine = Container(
+      width: this.widget.style.preferredWidth,
+      height: double.infinity,
+      child: CustomPaint(
+        painter: TimelineNodeLinePainter(style: this.widget.style),
+      ),
+    );
+    Widget nodeContent = Expanded(child: this.widget.child);
+    List<Widget> nodeRowChildren = [];
     switch (this.widget.style.type) {
       case TimelineNodeType.Left:
-        return IntrinsicHeight(
-          child: Row(
-            children: <Widget>[
-              Container(
-                width: this.widget.style.preferredWidth,
-                height: double.infinity,
-                child: CustomPaint(
-                  painter: TimelineNodeLinePainter(style: this.widget.style),
-                ),
-              ),
-              Expanded(child: this.widget.child),
-            ],
-          ),
-        );
+        nodeRowChildren.add(nodeLine);
+        nodeRowChildren.add(nodeContent);
         break;
       case TimelineNodeType.Right:
-        return IntrinsicHeight(
-          child: Row(
-            children: <Widget>[
-              Expanded(child: this.widget.child),
-              Container(
-                width: this.widget.style.preferredWidth,
-                height: double.infinity,
-                child: CustomPaint(
-                  painter: TimelineNodeLinePainter(style: this.widget.style),
-                ),
-              ),
-            ],
-          ),
-        );
+        nodeRowChildren.add(nodeContent);
+        nodeRowChildren.add(nodeLine);
         break;
     }
+    return IntrinsicHeight(
+      child: Row(
+        children: nodeRowChildren,
+      ),
+    );
   }
 
   @override
