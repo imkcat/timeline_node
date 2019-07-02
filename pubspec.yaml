@@ -1,6 +1,6 @@
 name: timeline_node
 description: A timeline node widget to create timeline layout.
-version: 0.0.1
+version: 0.0.2
 author: Kcat <imkcat@icloud.com>
 homepage: https://github.com/ImKcat/timeline_node
 
